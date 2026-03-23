@@ -1,0 +1,126 @@
+{
+    "name": "context-mentions",
+    "displayName": "Prompt Context Mentions",
+    "description": "Enable @ mentions for project files in Markdown, designed for AI prompt context and developer workflows.",
+    "version": "0.1.0",
+    "publisher": "devailab",
+    "author": {
+        "name": "Devailab",
+        "email": "frank.alvarez@devailab.com",
+        "url": "https://devailab.com"
+    },
+    "pricing": "Free",
+    "license": "MIT",
+    "icon": "static/icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/devailab/context-mentions"
+    },
+    "bugs": {
+        "url": "https://github.com/devailab/context-mentions/issues",
+        "email": "frank.alvarez@devailab.com"
+    },
+    "homepage": "https://github.com/devailab/context-mentions#readme",
+    "qna": "marketplace",
+    "engines": {
+        "vscode": "^1.110.0"
+    },
+    "activationEvents": [
+        "onLanguage:markdown"
+    ],
+    "categories": [
+        "Programming Languages",
+        "Other"
+    ],
+    "keywords": [
+        "markdown",
+        "mention",
+        "autocomplete",
+        "path",
+        "prompt",
+        "context"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "configuration": {
+            "title": "Context Mentions",
+            "properties": {
+                "contextMentions.basePaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "src"
+                    ],
+                    "description": "List of base folders to search within for file mentions. Use ~ for home directory on macOS."
+                },
+                "contextMentions.relativeDirectory": {
+                    "type": "string",
+                    "default": "src",
+                    "description": "Directory used to compute the relative path shown in suggestions. The path relative to this directory will be displayed (e.g., 'src' for 'src/components/Button.tsx')."
+                },
+                "contextMentions.allowedExtensions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        ".ts",
+                        ".js",
+                        ".tsx",
+                        ".jsx",
+                        ".json"
+                    ],
+                    "description": "Allowed file extensions to include in suggestions"
+                },
+                "contextMentions.maxSuggestions": {
+                    "type": "number",
+                    "default": 50,
+                    "minimum": 1,
+                    "maximum": 500,
+                    "description": "Maximum number of suggestions to show"
+                },
+                "contextMentions.excludeGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "**/node_modules/**",
+                        "**/dist/**",
+                        "**/build/**",
+                        "**/.git/**",
+                        "**/coverage/**",
+                        "**/.vscode/**",
+                        "**/out/**"
+                    ],
+                    "description": "Glob patterns to exclude from file search"
+                },
+                "contextMentions.enableDebugLogging": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable debug logging in the output channel"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "test": "npm run compile && node ./out/test/runTest.js",
+        "format": "biome format src --write",
+        "package": "npx vsce package"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.4.8",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^25.5.0",
+        "@types/vscode": "^1.110.0",
+        "@vscode/test-electron": "^2.5.2",
+        "esbuild": "^0.27.4",
+        "mocha": "^11.7.5",
+        "typescript": "^5.9.3"
+    }
+}

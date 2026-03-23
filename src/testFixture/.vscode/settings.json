@@ -1,0 +1,12 @@
+{
+    "contextMentions.basePaths": ["src"],
+    "contextMentions.relativeDirectory": "src",
+    "contextMentions.allowedExtensions": [".ts", ".js", ".json"],
+    "contextMentions.maxSuggestions": 50,
+    "contextMentions.excludeGlobs": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.git/**"
+    ]
+}
